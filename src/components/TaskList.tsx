@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import '../styles/tasklist.scss'
 import { FiTrash, FiCheckSquare } from 'react-icons/fi'
-import toast, { Toaster } from 'react-hot-toast';
 
 interface Task {
   id: number;
@@ -19,7 +18,7 @@ export function TaskList() {
 
   function handleCreateNewTask() {
     
-    if(!newTaskTitle) return toast.error("Insira um título à nota!");
+    if(!newTaskTitle) return;
 
     const newTask = {
       id: randomID(), 
@@ -28,7 +27,6 @@ export function TaskList() {
     }
     setTasks(oldState => [...oldState, newTask]);
     setNewTaskTitle('');
-    toast.success("Nota criada com sucesso!")
   }
 
   function handleToggleTaskCompletion(id: number) {
@@ -46,7 +44,6 @@ export function TaskList() {
 
   return (
     <section className="task-list container">
-      <Toaster />
       <header>
         <h2>Minhas tasks</h2>
 
