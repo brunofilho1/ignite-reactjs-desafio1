@@ -18,13 +18,17 @@ export function TaskList() {
   }
 
   function handleCreateNewTask() {
-    if(newTaskTitle === '') {
-      toast.error("Insira um título primeiro!")
-    } else {
-      toast.success("Nota criada com sucesso!")
-      setTasks([...tasks, { id: randomID(), title: newTaskTitle, isComplete: false}]);
-      setNewTaskTitle('');
+    
+    if(!newTaskTitle) return toast.error("Insira um título à nota!");
+
+    const newTask = {
+      id: randomID(), 
+      title: newTaskTitle, 
+      isComplete: false
     }
+    setTasks(oldState => [...oldState, newTask]);
+    setNewTaskTitle('');
+    toast.success("Nota criada com sucesso!")
   }
 
   function handleToggleTaskCompletion(id: number) {
